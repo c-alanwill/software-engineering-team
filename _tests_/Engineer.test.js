@@ -1,7 +1,6 @@
 const { default: expect } = require('expect')
 const Engineer = require('../lib/engineer.js')
-const engineer = new Engineer ("Bob", 4, "bob@email.com", "Engineer")
-
+const engineer = new Engineer ("Bob", 4, "bob@email.com", "github.com/bobhub")
 describe("test engineer constructor",() => {
     describe ("test all properties of engineer", () => {
         it ("returns a name", () => {
@@ -13,10 +12,9 @@ describe("test engineer constructor",() => {
         it ("returns an email", () => {
             expect(engineer.email).toEqual("bob@email.com")
         })
-        // it ("returns github info", () => {
-        //     expect(engineer.email).toEqual("bob@email.com")
-        // })
-
+        it ("returns a github page", () => {
+            expect(engineer.github).toEqual("github.com/bobhub")
+            })
     })
 describe ("test engineer methods", () => {
     it ("test getName", () => {
@@ -28,8 +26,8 @@ describe ("test engineer methods", () => {
     it ("test getEmail", () => {
         expect(engineer.getEmail()).toEqual("bob@email.com")
     })
-    // it ("test getRole", () => {
-    // expect(engineer.getRole()).toEqual("Engineer")
-    // })
+    it ("test getGithub", () => {
+        expect(engineer.getGithub()).toEqual("github.com/bobhub")
+    })
 })
 })

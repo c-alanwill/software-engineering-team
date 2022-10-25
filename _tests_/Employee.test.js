@@ -3,18 +3,15 @@ const Employee = require('../lib/employee.js')
 const employee = new Employee ("Steve", 1, "steve@email.com")
 describe ("test employee constructor",() => {
     describe ("test all properties of employee", () => {
-        it ("test name", () => {
+        it ("returns a name", () => {
             expect(employee.name).toEqual("Steve")
         })
-        it ("test id", () => {
+        it ("returns an id", () => {
             expect(employee.id).toEqual(1)
         })
-        it ("test email", () => {
+        it ("returns an email", () => {
             expect(employee.email).toEqual("steve@email.com")
         })
-        // it ("test role", () => {
-        //     expect(employee.role).toEqual("Employee")
-        // })
     })
 describe ("test employee methods", () => {
     it ("test getName", () => {
@@ -26,8 +23,5 @@ describe ("test employee methods", () => {
     it ("test getEmail", () => {
         expect(employee.getEmail()).toEqual("steve@email.com")
     })
-    // it ("test getRole", () => {
-    //     expect(employee.getRole()).toEqual("Employee")
-    // })
 })
 })

@@ -1,6 +1,6 @@
 const { default: expect } = require('expect')
 const Intern = require('../lib/intern.js')
-const newIntern = new Intern ("Alex", 3, "alex@email.com", "Intern")
+const newIntern = new Intern ("Alex", 3, "alex@email.com", "School")
 describe ("test intern constructor",() => {
     describe ("test all properties of intern", () => {
         it ("returns a name", () => {
@@ -12,9 +12,9 @@ describe ("test intern constructor",() => {
         it ("returns an email", () => {
             expect(newIntern.email).toEqual("alex@email.com")
         })
-        // it ("test role", () => {
-        // expect(intern.role).toEqual("Intern")
-        // })
+        it ("returns a school", () => {
+            expect(newIntern.school).toEqual("School")
+            })
     })
 describe ("test intern methods", () => {
     it ("test getName", () => {
@@ -26,8 +26,8 @@ describe ("test intern methods", () => {
     it ("test getEmail", () => {
         expect(newIntern.getEmail()).toEqual("alex@email.com")
     })
-    // it ("test getRole", () => {
-    // expect(intern.getRole()).toEqual("Intern")
-    // })
+    it ("test getSchool", () => {
+        expect(newIntern.getSchool()).toEqual("School")
+    })
 })
 })
