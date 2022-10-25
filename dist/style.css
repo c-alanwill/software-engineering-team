@@ -1,0 +1,34 @@
+body {
+	font-family:'Open Sans', sans-serif;
+	font-size: 15px;
+	line-height: 1.3;
+}
+
+/* Navbar */
+.navbar {
+	color: white;
+	padding: 22px;
+	font-size: 26px;
+}
+
+/* Cards */
+
+.card-group {
+	/* border-radius: 5px; */
+	margin: 16px;
+}
+.card-title {
+	font-weight: bold;
+	font-size: 19px;
+}
+
+.card-subtitle {
+	font-size: 18px;
+}
+
+/* Media Queries */
+@media (max-width: 778px){
+.card-group {
+	display: block;
+}
+}
