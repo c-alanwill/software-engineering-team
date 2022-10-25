@@ -29,8 +29,5 @@ describe ("test manager methods", () => {
     it ("test getNumber", () => {
         expect(manager.getNumber()).toEqual(8)
     })
-    // it ("test getRole", () => {
-    // expect(manager.getRole()).toEqual("Manager")
-    // })
 })
 })
