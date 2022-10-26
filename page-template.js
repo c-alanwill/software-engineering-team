@@ -68,7 +68,6 @@ const generateTeam = team => {
 	);
 
 	return html.join("");
-
 }
 
 // Export function to generate page

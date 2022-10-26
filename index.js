@@ -9,7 +9,6 @@ const DIST_DIR = path.resolve(_dirname, 'dist');
 const distPath = path.join(DIST_DIR, 'team.html');
 
 const render = require('page-template.js');
-// const { create } = require('domain');
 
 const teamMembers = [];
 const idArray = [];
@@ -107,68 +106,173 @@ function init(){
       }
     });
   }
-  // function addEngineer() {
-  //   inquirer
-  //   .prompt([
-  //     {
-  //   type: 'input',
-  //   name: 'engineerName',
-  //   message: "What is your engineer's name?",
-  //   validate: (answer) => {	
-  //     if (answer != '') {
-  //       return true;
-  //     }
-  //     return 'Please enter at least one character.';
-  //   },
-  // },
-  // {
-  //   type: 'input',
-  //   name: 'id',
-  //   message: "What is your engineer's id?",
-  // },
-  // {
-  //   type: 'input',
-  //   name: 'email',
-  //   message: "What is your engineer's email address?",
-  // },
-  //     {
-  //       type: 'input',
-  //       name: 'github',
-  //       message: "What is your engineer's GitHub Username?",
-  //     },
-  //   ])
-  // }
-  // function addIntern() {
-  //   inquirer
-  //   .prompt([
-  //     {
-  //   type: 'input',
-  //   name: 'internName',
-  //   message: "What is your intern's name?",
-  //   validate: (answer) => {	
-  //     if (answer != '') {
-  //       return true;
-  //     }
-  //     return 'Please enter at least one character.';
-  //   },
-  // },
-  // {
-  //   type: 'input',
-  //   name: 'id',
-  //   message: "What is your intern's id?",
-  // },
-  // {
-  //   type: 'input',
-  //   name: 'email',
-  //   message: "What is your intern's email address?",
-  // },
-  //     {
-  //       type: 'input',
-  //       name: 'school',
-  //       message: 'What school did your intern attend?',
-  //     },
-  //   ])
-  // }
+  function createEngineer() {
+    inquirer
+      .prompt([
+        {
+          type: 'input',
+          name: 'engineerName',
+          message: "What is your engineer's name?",
+          validate: (answer) => {	
+            if (answer != '') {
+              return true;
+            }
+            return 'Please enter at least one character.';
+          },
+        },
+        {
+          type: 'input',
+          name: 'engineerId',
+          message: "What is your engineer's id?",
+          validate: (answer) => {	
+            if (answer != '') {
+              return true;
+            }
+            return 'Please enter at least one character.';
+          },
+        },
+        {
+          type: 'input',
+          name: 'engineerEmail',
+          message: "What is your engineer's email address?",
+          validate: (answer) => {	
+            if (answer != '') {
+              return true;
+            }
+            return 'Please enter at least one character.';
+          },
+        },
+        {
+          type: 'input',
+          name: 'engineerGithub',
+          message: "What is your engineer's Github address?",
+          validate: (answer) => {	
+            if (answer != '') {
+              return true;
+            }
+            return 'Please enter at least one character.';
+          },
+        },
+    ])
+    .then((answers) => {
+      const engineer = new Engineer(
+        answers.engineerName,
+        answers.engineerId,
+        answers.engineerEmail,
+        answers.engineerGithub
+      );
+      teamMembers.push(engineer);
+      idArray.push(answers.engineerId);
+      createTeam();
+    });
+  }
+	function createTeam() {
+		inquirer
+		.prompt([
+			{
+				type: 'list',
+				name: 'memberChoice',
+				message: "Which type of team member would you like to add?",
+				choices: [
+					'Intern',
+					"I don't want to add any more team members.",
+				],
+				},
+    ])
+    .then((userChoice) => {
+      switch (userChoice.memberChoice) {
+        case 'Intern':
+          addIntern ();
+          break;
+        default:
+          buildTeam();
+      }
+    });
+  }
+  function createIntern() {
+    inquirer
+      .prompt([
+        {
+          type: 'input',
+          name: 'internName',
+          message: "What is your intern's name?",
+          validate: (answer) => {	
+            if (answer != '') {
+              return true;
+            }
+            return 'Please enter at least one character.';
+          },
+        },
+        {
+          type: 'input',
+          name: 'internId',
+          message: "What is your intern's id?",
+          validate: (answer) => {	
+            if (answer != '') {
+              return true;
+            }
+            return 'Please enter at least one character.';
+          },
+        },
+        {
+          type: 'input',
+          name: 'internEmail',
+          message: "What is your intern's email address?",
+          validate: (answer) => {	
+            if (answer != '') {
+              return true;
+            }
+            return 'Please enter at least one character.';
+          },
+        },
+        {
+          type: 'input',
+          name: 'internSchool',
+          message: "What is your intern's school?",
+          validate: (answer) => {	
+            if (answer != '') {
+              return true;
+            }
+            return 'Please enter at least one character.';
+          },
+        },
+    ])
+    .then((answers) => {
+      const intern = new Intern(
+        answers.internName,
+        answers.internId,
+        answers.internEmail,
+        answers.internSchool
+      );
+      teamMembers.push(intern);
+      idArray.push(answers.internId);
+      createTeam();
+    });
+  }
+	function createTeam() {
+		inquirer
+		.prompt([
+			{
+				type: 'list',
+				name: 'memberChoice',
+				message: "Which type of team member would you like to add?",
+				choices: [
+					'Intern',
+					"I don't want to add any more team members.",
+				],
+				},
+    ])
+    .then((userChoice) => {
+      switch (userChoice.memberChoice) {
+        case 'Intern':
+          addIntern ();
+          break;
+        default:
+          buildTeam();
+      }
+    });
+  }
+  
   function buildTeam() {
     if (!fs.existsSync(DIST_DIR)) {
       fs.mkdirSync(DIST_DIR);
@@ -180,13 +284,3 @@ function init(){
 }
 
 	init();
-
-
-  // ])
-  // .then((answers) => {
-  //   const htmlPageContent = generateHTML(answers);
-
-  //   fs.writeFile('./dist/team.html', htmlPageContent, (err) =>
-  //     err ? console.log(err) : console.log('Successfully created index.html!')
-  //   );
-  // });
