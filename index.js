@@ -49,17 +49,8 @@ inquirer
       name: 'num',
       message: "What is your team member's office number?",
     },
-    {
-      type: 'input',
-      name: 'github',
-      message: "What is your team member's GitHub Username?",
-    },
-    {
-      type: 'input',
-      name: 'school',
-      message: 'What school did your team member attend?',
-    }
-	
+	])
+  }
 	function createTeam() {
 		inquirer
 		.prompt([
@@ -73,29 +64,88 @@ inquirer
 					"I don't want to add any more team members.",
 				],
 				},
-			},
+    ])
+    .then(userChoice) => {
+      switch (userChoice.memberChoice) {
+        case 'Engineer';
+          addEngineer();
+          break;
+        case "Intern';
+          addIntern ();
+          break;
+        case 'Manager';
+          addManager();
+      }
+    }
+  }
   function addEngineer() {
     inquirer
     .prompt([
       {
-        
+    type: 'input',
+    name: 'engineerName',
+    message: "What is your engineer's name?",
+    validate: (answer) => {	
+      if (answer != '') {
+        return true;
       }
+      return 'Please enter at least one character.';
+    },
+  },
+  {
+    type: 'input',
+    name: 'id',
+    message: "What is your engineer's id?",
+  },
+  {
+    type: 'input',
+    name: 'email',
+    message: "What is your engineer's email address?",
+  },
+      {
+        type: 'input',
+        name: 'github',
+        message: "What is your engineer's GitHub Username?",
+      },
     ])
   }
-
   function addIntern() {
-
+    inquirer
+    .prompt([
+      {
+    type: 'input',
+    name: 'internName',
+    message: "What is your intern's name?",
+    validate: (answer) => {	
+      if (answer != '') {
+        return true;
+      }
+      return 'Please enter at least one character.';
+    },
+  },
+  {
+    type: 'input',
+    name: 'id',
+    message: "What is your intern's id?",
+  },
+  {
+    type: 'input',
+    name: 'email',
+    message: "What is your intern's email address?",
+  },
+      {
+        type: 'input',
+        name: 'school',
+        message: 'What school did your intern attend?',
+      },
+    ])
   }
-
   function buildTeam() {
     if (!fs.existsSync(DIST_DIR)) {
       fs.mkdirSync(DIST_DIR);
     }
     fs.writeFileSync(distPath, renber(teamMembers), 'utf-8');
   }
-
-  createManager();
-	}
 
 	appMenu();
 
