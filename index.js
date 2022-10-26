@@ -9,7 +9,7 @@ const DIST_DIR = path.resolve(_dirname, 'dist');
 const distPath = path.join(DIST_DIR, 'team.html');
 
 const render = require('page-template.js');
-const { create } = require('domain');
+// const { create } = require('domain');
 
 const teamMembers = [];
 const idArray = [];
@@ -19,37 +19,66 @@ console.log(
 		'\nWelcome to the team generator.\nUse `npm run reset` to reset the dist/ folder\n'
 );
 
-function appMenu(){
+function init(){
 	function createManager() {
-inquirer
-  .prompt([
-    {
-      type: 'input',
-      name: 'managerName',
-      message: "What is your team manager's name?",
-			validate: (answer) => {	
-				if (answer != '') {
-					return true;
-				}
-				return 'Please enter at least one character.';
-			},
-    },
-    {
-      type: 'input',
-      name: 'id',
-      message: "What is your team manager's id?",
-    },
-    {
-      type: 'input',
-      name: 'email',
-      message: "What is your team manager's email address?",
-    },
-    {
-      type: 'input',
-      name: 'num',
-      message: "What is your team member's office number?",
-    },
-	])
+    inquirer
+      .prompt([
+        {
+          type: 'input',
+          name: 'managerName',
+          message: "What is your team manager's name?",
+          validate: (answer) => {	
+            if (answer != '') {
+              return true;
+            }
+            return 'Please enter at least one character.';
+          },
+        },
+        {
+          type: 'input',
+          name: 'managerId',
+          message: "What is your team manager's id?",
+          validate: (answer) => {	
+            if (answer != '') {
+              return true;
+            }
+            return 'Please enter at least one character.';
+          },
+        },
+        {
+          type: 'input',
+          name: 'managerEmail',
+          message: "What is your team manager's email address?",
+          validate: (answer) => {	
+            if (answer != '') {
+              return true;
+            }
+            return 'Please enter at least one character.';
+          },
+        },
+        {
+          type: 'input',
+          name: 'managerOfficeNumber',
+          message: "What is your team member's office number?",
+          validate: (answer) => {	
+            if (answer != '') {
+              return true;
+            }
+            return 'Please enter at least one character.';
+          },
+        },
+    ])
+    .then((answers) => {
+      const manager = new Manager(
+        answers.managerName,
+        answers.managerId,
+        answers.managerEmail,
+        answers.managerOfficeNumber
+      );
+      teamMembers.push(manager);
+      idArray.push(answers.managerId);
+      createTeam();
+    });
   }
 	function createTeam() {
 		inquirer
@@ -65,89 +94,92 @@ inquirer
 				],
 				},
     ])
-    .then(userChoice) => {
+    .then((userChoice) => {
       switch (userChoice.memberChoice) {
-        case 'Engineer';
+        case 'Engineer':
           addEngineer();
           break;
-        case "Intern';
+        case 'Intern':
           addIntern ();
           break;
-        case 'Manager';
-          addManager();
+        default:
+          buildTeam();
       }
-    }
+    });
   }
-  function addEngineer() {
-    inquirer
-    .prompt([
-      {
-    type: 'input',
-    name: 'engineerName',
-    message: "What is your engineer's name?",
-    validate: (answer) => {	
-      if (answer != '') {
-        return true;
-      }
-      return 'Please enter at least one character.';
-    },
-  },
-  {
-    type: 'input',
-    name: 'id',
-    message: "What is your engineer's id?",
-  },
-  {
-    type: 'input',
-    name: 'email',
-    message: "What is your engineer's email address?",
-  },
-      {
-        type: 'input',
-        name: 'github',
-        message: "What is your engineer's GitHub Username?",
-      },
-    ])
-  }
-  function addIntern() {
-    inquirer
-    .prompt([
-      {
-    type: 'input',
-    name: 'internName',
-    message: "What is your intern's name?",
-    validate: (answer) => {	
-      if (answer != '') {
-        return true;
-      }
-      return 'Please enter at least one character.';
-    },
-  },
-  {
-    type: 'input',
-    name: 'id',
-    message: "What is your intern's id?",
-  },
-  {
-    type: 'input',
-    name: 'email',
-    message: "What is your intern's email address?",
-  },
-      {
-        type: 'input',
-        name: 'school',
-        message: 'What school did your intern attend?',
-      },
-    ])
-  }
+  // function addEngineer() {
+  //   inquirer
+  //   .prompt([
+  //     {
+  //   type: 'input',
+  //   name: 'engineerName',
+  //   message: "What is your engineer's name?",
+  //   validate: (answer) => {	
+  //     if (answer != '') {
+  //       return true;
+  //     }
+  //     return 'Please enter at least one character.';
+  //   },
+  // },
+  // {
+  //   type: 'input',
+  //   name: 'id',
+  //   message: "What is your engineer's id?",
+  // },
+  // {
+  //   type: 'input',
+  //   name: 'email',
+  //   message: "What is your engineer's email address?",
+  // },
+  //     {
+  //       type: 'input',
+  //       name: 'github',
+  //       message: "What is your engineer's GitHub Username?",
+  //     },
+  //   ])
+  // }
+  // function addIntern() {
+  //   inquirer
+  //   .prompt([
+  //     {
+  //   type: 'input',
+  //   name: 'internName',
+  //   message: "What is your intern's name?",
+  //   validate: (answer) => {	
+  //     if (answer != '') {
+  //       return true;
+  //     }
+  //     return 'Please enter at least one character.';
+  //   },
+  // },
+  // {
+  //   type: 'input',
+  //   name: 'id',
+  //   message: "What is your intern's id?",
+  // },
+  // {
+  //   type: 'input',
+  //   name: 'email',
+  //   message: "What is your intern's email address?",
+  // },
+  //     {
+  //       type: 'input',
+  //       name: 'school',
+  //       message: 'What school did your intern attend?',
+  //     },
+  //   ])
+  // }
   function buildTeam() {
     if (!fs.existsSync(DIST_DIR)) {
       fs.mkdirSync(DIST_DIR);
     }
-    fs.writeFileSync(distPath, renber(teamMembers), 'utf-8');
+    fs.writeFileSync(distPath, render(teamMembers), 'utf-8');
   }
 
-	appMenu();
+  createManager();
+}
+
+	init();
 
 
   // ])
