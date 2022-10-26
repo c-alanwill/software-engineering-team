@@ -248,7 +248,7 @@ function init(){
       idArray.push(answers.internId);
       buildTeam();
     });
-  // }
+  }
 	// function createTeam() {
 	// 	inquirer
 	// 	.prompt([
