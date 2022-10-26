@@ -145,7 +145,7 @@ function init(){
         {
           type: 'input',
           name: 'engineerGithub',
-          message: "What is your engineer's Github address?",
+          message: "What is your engineer's Github username?",
           validate: (answer) => {	
             if (answer != '') {
               return true;
@@ -246,32 +246,25 @@ function init(){
       );
       teamMembers.push(intern);
       idArray.push(answers.internId);
-      createTeam();
+      buildTeam();
     });
-  }
-	function createTeam() {
-		inquirer
-		.prompt([
-			{
-				type: 'list',
-				name: 'memberChoice',
-				message: "Which type of team member would you like to add?",
-				choices: [
-					'Intern',
-					"I don't want to add any more team members.",
-				],
-				},
-    ])
-    .then((userChoice) => {
-      switch (userChoice.memberChoice) {
-        case 'Intern':
-          addIntern ();
-          break;
-        default:
-          buildTeam();
-      }
-    });
-  }
+  // }
+	// function createTeam() {
+	// 	inquirer
+	// 	.prompt([
+	// 		{
+	// 			type: 'list',
+	// 			name: 'memberChoice',
+	// 			message: "Which type of team member would you like to add?",
+	// 			choices: [
+	// 				"I don't want to add any more team members.",
+	// 			],
+	// 			},
+  //   ])
+  //   .then((userChoice) => {
+  //         buildTeam();
+  //   });
+  // }
   
   function buildTeam() {
     if (!fs.existsSync(DIST_DIR)) {
