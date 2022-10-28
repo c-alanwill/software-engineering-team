@@ -1,14 +1,14 @@
-const Manager = require('./lib/Manager');
-const Engineer = require('.lib/Engineer');
-const Intern = require('./lib/Intern');
+const Manager = require('./lib/manager');
+const Engineer = require('./lib/engineer');
+const Intern = require('./lib/intern');
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require('fs');
 
-const DIST_DIR = path.resolve(_dirname, 'dist');
+const DIST_DIR = path.resolve(__dirname, 'dist');
 const distPath = path.join(DIST_DIR, 'team.html');
 
-const render = require('page-template.js');
+const render = require('./page-template');
 
 const teamMembers = [];
 const idArray = [];
@@ -96,10 +96,10 @@ function init(){
     .then((userChoice) => {
       switch (userChoice.memberChoice) {
         case 'Engineer':
-          addEngineer();
+          createEngineer();
           break;
         case 'Intern':
-          addIntern ();
+          createIntern ();
           break;
         default:
           buildTeam();
@@ -166,29 +166,29 @@ function init(){
       createTeam();
     });
   }
-	function createTeam() {
-		inquirer
-		.prompt([
-			{
-				type: 'list',
-				name: 'memberChoice',
-				message: "Which type of team member would you like to add?",
-				choices: [
-					'Intern',
-					"I don't want to add any more team members.",
-				],
-				},
-    ])
-    .then((userChoice) => {
-      switch (userChoice.memberChoice) {
-        case 'Intern':
-          addIntern ();
-          break;
-        default:
-          buildTeam();
-      }
-    });
-  }
+	// function createTeam() {
+	// 	inquirer
+	// 	.prompt([
+	// 		{
+	// 			type: 'list',
+	// 			name: 'memberChoice',
+	// 			message: "Which type of team member would you like to add?",
+	// 			choices: [
+	// 				'Intern',
+	// 				"I don't want to add any more team members.",
+	// 			],
+	// 			},
+  //   ])
+  //   .then((userChoice) => {
+  //     switch (userChoice.memberChoice) {
+  //       case 'Intern':
+  //         createIntern ();
+  //         break;
+  //       default:
+  //         buildTeam();
+  //     }
+  //   });
+  // }
   function createIntern() {
     inquirer
       .prompt([
@@ -247,6 +247,7 @@ function init(){
       teamMembers.push(intern);
       idArray.push(answers.internId);
       buildTeam();
+      // CAN I HAVE buildTeam HERE ON LINE 249?  IF I ASK THE USER THE QUESTION AGAIN, HOW DO I BUILD TEAM?  NOT SURE ON THE THEN STATEMENT ON LINE 265.
     });
   }
 	// function createTeam() {
@@ -262,7 +263,13 @@ function init(){
 	// 			},
   //   ])
   //   .then((userChoice) => {
+  //     switch (userChoice.memberChoice) {
+  //       case 'Intern':
+  //         addIntern ();
+  //         break;
+  //       default:
   //         buildTeam();
+  //     }
   //   });
   // }
   
