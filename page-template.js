@@ -1,4 +1,4 @@
-// Create Team
+// Generate Team
 const generateTeam = team => {
 
 	// Generate Manager HTML
@@ -44,7 +44,7 @@ const generateTeam = team => {
 		<div class="card-body">
 			<p class="card-text"><strong>ID: </strong>${intern.getId()}</p>
 			<p class="card-text"><strong>Email: </strong> <a href="mailto:intern@email.com">${intern.getEmail()}</a></p>
-			<p class="card-text"><strong>Office Number: </strong> ${intern.getSchool()}</p>
+			<p class="card-text"><strong>School: </strong> ${intern.getSchool()}</p>
 		</div>
 	</div>
 		`

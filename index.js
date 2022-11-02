@@ -13,12 +13,6 @@ const render = require('./page-template');
 const idArray = [];
 const teamMembers = [];
 
-
-// Start to generate team
-console.log(
-		'\nGenerate the team.\nUse `npm run reset` to reset the dist/ folder\n'
-);
-
 // Create Team Members
 	function createManager() {
     inquirer
@@ -31,7 +25,7 @@ console.log(
             if (answer != '') {
               return true;
             }
-            return 'Please enter at least one character.';
+            return 'Please enter a minimum of one character.';
           },
         },
         {
@@ -42,7 +36,7 @@ console.log(
             if (answer != '') {
               return true;
             }
-            return 'Please enter at least one character.';
+            return 'Please enter a minimum of one character.';
           },
         },
         {
@@ -53,7 +47,7 @@ console.log(
             if (answer != '') {
               return true;
             }
-            return 'Please enter at least one character.';
+            return 'Please enter a minimum of one character.';
           },
         },
         {
@@ -64,7 +58,7 @@ console.log(
             if (answer != '') {
               return true;
             }
-            return 'Please enter at least one character.';
+            return 'Please enter a minimum of one character.';
           },
         },
     ])
@@ -91,7 +85,7 @@ console.log(
             if (answer != '') {
               return true;
             }
-            return 'Please enter at least one character.';
+            return 'Please enter a minimum of one character.';
           },
         },
         {
@@ -102,7 +96,7 @@ console.log(
             if (answer != '') {
               return true;
             }
-            return 'Please enter at least one character.';
+            return 'Please enter a minimum of one character.';
           },
         },
         {
@@ -113,7 +107,7 @@ console.log(
             if (answer != '') {
               return true;
             }
-            return 'Please enter at least one character.';
+            return 'Please enter a minimum of one character.';
           },
         },
         {
@@ -124,7 +118,7 @@ console.log(
             if (answer != '') {
               return true;
             }
-            return 'Please enter at least one character.';
+            return 'Please enter a minimum of one character.';
           },
         },
     ])
@@ -151,7 +145,7 @@ console.log(
             if (answer != '') {
               return true;
             }
-            return 'Please enter at least one character.';
+            return 'Please enter a minimum of one character.';
           },
         },
         {
@@ -162,7 +156,7 @@ console.log(
             if (answer != '') {
               return true;
             }
-            return 'Please enter at least one character.';
+            return 'Please enter a minimum of one character.';
           },
         },
         {
@@ -173,7 +167,7 @@ console.log(
             if (answer != '') {
               return true;
             }
-            return 'Please enter at least one character.';
+            return 'Please enter a minimum of one character.';
           },
         },
         {
@@ -184,7 +178,7 @@ console.log(
             if (answer != '') {
               return true;
             }
-            return 'Please enter at least one character.';
+            return 'Please enter a minimum of one character.';
           },
         },
     ])

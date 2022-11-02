@@ -34,7 +34,7 @@
 
 * The code for this project can be found on GitHub at: https://github.com/c-alanwill/software-engineering-team
 
-* A link to a video that shows a walkthrough demonstrating how this readme works is available at: https://drive.google.com/file/d/18AR4thXgKrAxyQcoxuTFmlIJY9Yr9OwO/view?usp=sharing
+* A link to a video that shows a walkthrough demonstrating how this readme works is available at: https://drive.google.com/file/d/1YbcsrAUzzKRgOVt3T5Ul_SnRI8NfqP0d/view?usp=sharing
 
 ## Usage
 
