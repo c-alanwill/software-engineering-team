@@ -1,49 +1,49 @@
 // Create Team
 const generateTeam = team => {
 
-	// Create Manager HTML
+	// Generate Manager HTML
 	const generateManager = manager => {
 		return `
 		<div class="card mx-1 mb-3">
 		<div class="card-header">
-			<div class="card-title"> $(manager.getName()}</div>
-			<div class="card-subtitle"> $(manager.getRole()}</div>
+			<div class="card-title"> ${manager.getName()}</div>
+			<div class="card-subtitle"> ${manager.getRole()}</div>
 		</div>
 		<div class="card-body">
-			<p class="card-text"><strong>ID: </strong>$(manager.getID()}</p>
-			<p class="card-text"><strong>Email: </strong> <a href="mailto:$(manager.getEmail()}">$(manager.getEmail()}</a></p>
-			<p class="card-text"><strong>Office Number: </strong> ${manager.getOfficeNumber()}</p>
+			<p class="card-text"><strong>ID: </strong>${manager.getId()}</p>
+			<p class="card-text"><strong>Email: </strong> <a href="mailto:manager@email.com">${manager.getEmail()}</a></p>
+			<p class="card-text"><strong>Office Number: </strong> ${manager.getNumber()}</p>
 		</div>
 	</div>
 		`
 	};
-	// Create Engineer HTML
+	// Generate Engineer HTML
 	const generateEngineer = engineer => {
 		return `
 		<div class="card mx-1 mb-3">
 		<div class="card-header">
-			<div class="card-title"> $(engineer.getName()}</div>
-			<div class="card-subtitle"> $(engineer.getRole()}</div>
+			<div class="card-title"> ${engineer.getName()}</div>
+			<div class="card-subtitle"> ${engineer.getRole()}</div>
 		</div>
 		<div class="card-body">
-			<p class="card-text"><strong>ID: </strong>$(engineer.getID()}</p>
-			<p class="card-text"><strong>Email: </strong> <a href="mailto:$(engineer.getEmail()}">$(engineer.getEmail()}</a></p>
-			<p class="card-text"><strong>Office Number: </strong> ${engineer.getGithub()}</p>
+			<p class="card-text"><strong>ID: </strong>${engineer.getId()}</p>
+			<p class="card-text"><strong>Email: </strong> <a href="mailto:engineer@email.com">${engineer.getEmail()}</a></p>
+			<p class="card-text"><strong>GitHub: </strong> <a href="https://github.com/bobhub">${engineer.getGithub()}</a></p>
 		</div>
 	</div>
 		`
 	};
-	// Create Intern HTML
+	// Generate Intern HTML
 	const generateIntern = intern => {
 		return `
 		<div class="card mx-1 mb-3">
 		<div class="card-header">
-			<div class="card-title"> $(intern.getName()}</div>
-			<div class="card-subtitle"> $(intern.getRole()}</div>
+			<div class="card-title"> ${intern.getName()}</div>
+			<div class="card-subtitle"> ${intern.getRole()}</div>
 		</div>
 		<div class="card-body">
-			<p class="card-text"><strong>ID: </strong>$(intern.getID()}</p>
-			<p class="card-text"><strong>Email: </strong> <a href="mailto:$(intern.getEmail()}">$(intern.getEmail()}</a></p>
+			<p class="card-text"><strong>ID: </strong>${intern.getId()}</p>
+			<p class="card-text"><strong>Email: </strong> <a href="mailto:intern@email.com">${intern.getEmail()}</a></p>
 			<p class="card-text"><strong>Office Number: </strong> ${intern.getSchool()}</p>
 		</div>
 	</div>
@@ -70,7 +70,7 @@ const generateTeam = team => {
 	return html.join("");
 }
 
-// Export function to generate page
+// Export to generate page
 module.exports = team => {
 
 	return `

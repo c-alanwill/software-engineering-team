@@ -1,24 +1,25 @@
-const Manager = require('./lib/manager');
-const Engineer = require('./lib/engineer');
-const Intern = require('./lib/intern');
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require('fs');
+const distDir = path.resolve(__dirname, 'dist');
+const distPath = path.join(distDir, 'team.html');
 
-const DIST_DIR = path.resolve(__dirname, 'dist');
-const distPath = path.join(DIST_DIR, 'team.html');
+const Manager = require('./lib/manager');
+const Engineer = require('./lib/engineer');
+const Intern = require('./lib/intern');
+
 
 const render = require('./page-template');
-
-const teamMembers = [];
 const idArray = [];
+const teamMembers = [];
 
-// Inform User
+
+// Start to generate team
 console.log(
-		'\nWelcome to the team generator.\nUse `npm run reset` to reset the dist/ folder\n'
+		'\nGenerate the team.\nUse `npm run reset` to reset the dist/ folder\n'
 );
 
-function init(){
+// Create Team Members
 	function createManager() {
     inquirer
       .prompt([
@@ -57,8 +58,8 @@ function init(){
         },
         {
           type: 'input',
-          name: 'managerOfficeNumber',
-          message: "What is your team member's office number?",
+          name: 'managerNumber',
+          message: "What is your team member's number?",
           validate: (answer) => {	
             if (answer != '') {
               return true;
@@ -72,38 +73,11 @@ function init(){
         answers.managerName,
         answers.managerId,
         answers.managerEmail,
-        answers.managerOfficeNumber
+        answers.managerNumber
       );
       teamMembers.push(manager);
       idArray.push(answers.managerId);
       createTeam();
-    });
-  }
-	function createTeam() {
-		inquirer
-		.prompt([
-			{
-				type: 'list',
-				name: 'memberChoice',
-				message: "Which type of team member would you like to add?",
-				choices: [
-					'Engineer',
-					'Intern',
-					"I don't want to add any more team members.",
-				],
-				},
-    ])
-    .then((userChoice) => {
-      switch (userChoice.memberChoice) {
-        case 'Engineer':
-          createEngineer();
-          break;
-        case 'Intern':
-          createIntern ();
-          break;
-        default:
-          buildTeam();
-      }
     });
   }
   function createEngineer() {
@@ -166,29 +140,6 @@ function init(){
       createTeam();
     });
   }
-	// function createTeam() {
-	// 	inquirer
-	// 	.prompt([
-	// 		{
-	// 			type: 'list',
-	// 			name: 'memberChoice',
-	// 			message: "Which type of team member would you like to add?",
-	// 			choices: [
-	// 				'Intern',
-	// 				"I don't want to add any more team members.",
-	// 			],
-	// 			},
-  //   ])
-  //   .then((userChoice) => {
-  //     switch (userChoice.memberChoice) {
-  //       case 'Intern':
-  //         createIntern ();
-  //         break;
-  //       default:
-  //         buildTeam();
-  //     }
-  //   });
-  // }
   function createIntern() {
     inquirer
       .prompt([
@@ -246,41 +197,44 @@ function init(){
       );
       teamMembers.push(intern);
       idArray.push(answers.internId);
-      buildTeam();
-      // CAN I HAVE buildTeam HERE ON LINE 249?  IF I ASK THE USER THE QUESTION AGAIN, HOW DO I BUILD TEAM?  NOT SURE ON THE THEN STATEMENT ON LINE 265.
+      createTeam();
     });
   }
-	// function createTeam() {
-	// 	inquirer
-	// 	.prompt([
-	// 		{
-	// 			type: 'list',
-	// 			name: 'memberChoice',
-	// 			message: "Which type of team member would you like to add?",
-	// 			choices: [
-	// 				"I don't want to add any more team members.",
-	// 			],
-	// 			},
-  //   ])
-  //   .then((userChoice) => {
-  //     switch (userChoice.memberChoice) {
-  //       case 'Intern':
-  //         addIntern ();
-  //         break;
-  //       default:
-  //         buildTeam();
-  //     }
-  //   });
-  // }
-  
+  function createTeam() {
+		inquirer
+		.prompt([
+			{
+				type: 'list',
+				name: 'memberChoice',
+				message: "Which type of team member would you like to add?",
+				choices: [
+					'Engineer',
+					'Intern',
+					"I don't want to add any more team members.",
+				],
+				},
+    ])
+    .then((userChoice) => {
+      switch (userChoice.memberChoice) {
+        case 'Engineer':
+          createEngineer();
+          break;
+        case 'Intern':
+          createIntern ();
+          break;
+        default:
+          buildTeam();
+      }
+    });
+  }
+	
   function buildTeam() {
-    if (!fs.existsSync(DIST_DIR)) {
-      fs.mkdirSync(DIST_DIR);
+    if (!fs.existsSync(distDir)) {
+      fs.mkdirSync(distDir);
     }
     fs.writeFileSync(distPath, render(teamMembers), 'utf-8');
   }
 
   createManager();
-}
 
-	init();
+	
